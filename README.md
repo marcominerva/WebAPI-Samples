@@ -2,7 +2,7 @@
 
 A collection of Web APIs made with ASP.NET Core
 
-**My First Web API**
+**[My First Web API](Src/MyFirstWebApi/)**
 
 A sample ASP.NET Core Web API that uses [OpenWeatherMap](https://openweathermap.org) to retrieve current and forecast wheather. It features:
 
@@ -14,7 +14,7 @@ A sample ASP.NET Core Web API that uses [OpenWeatherMap](https://openweathermap.
 
 In order to execute this sample, you need to register a free account on [OpenWeatherMap](https://openweathermap.org), generate an API Key and then set it in the [appsettings.json file](Src/MyFirstWebApi/appsettings.json).
 
-**Raspberry Control**
+**[Raspberry Control](Src/RaspberryControl/)**
 
 A sample that shows how to control PINs on a Raspberry Pi Board running ASP.NET Core on Linux. It features:
 
