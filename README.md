@@ -1,6 +1,6 @@
 # WebAPI Samples
 
-A collection of Web APIs made with ASP.NET Core
+A collection of Web APIs made with ASP.NET Core.
 
 **[My First Web API](Src/MyFirstWebApi/)**
 
@@ -12,7 +12,7 @@ A sample ASP.NET Core Web API that uses [OpenWeatherMap](https://openweathermap.
 - Caching
 - Json serialization and deserialization with System.Text.Json 
 
-In order to execute this sample, you need to register a free account on [OpenWeatherMap](https://openweathermap.org), generate an API Key and then set it in the [appsettings.json file](Src/MyFirstWebApi/appsettings.json).
+In order to execute this sample, you need to register a free account on [OpenWeatherMap](https://openweathermap.org), generate an API Key and then set it in the [appsettings.json file](Src/MyFirstWebApi/appsettings.json#L3).
 
 **[Raspberry Control](Src/RaspberryControl/)**
 
