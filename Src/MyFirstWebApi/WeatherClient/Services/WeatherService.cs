@@ -14,6 +14,7 @@ namespace WeatherClient.Services
         public WeatherService(IOptions<AppSettings> appSettings)
         {
             // Create a RestClient using Refit and the System.Text.Json serializer.
+            // See the JsonContentSerializer.cs class for implementation details.
             var settings = new RefitSettings
             {
                 ContentSerializer = new JsonContentSerializer(new JsonSerializerOptions
