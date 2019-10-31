@@ -7,9 +7,9 @@ namespace WeatherClient.Services
     public interface IWeatherServiceApi
     {
         [Get("/Weather/{country}/{zipCode}/current")]
-        Task<CurrentWeather> GetCurrentWeather(string country, string zipCode);
+        Task<CurrentWeather> GetCurrentWeatherAsync(string country, string zipCode);
 
         [Get("/Weather/{country}/{zipCode}/forecast")]
-        Task<ForecastWeather> GetForecastWeather(string country, string zipCode);
+        Task<ForecastWeather> GetForecastWeatherAsync(string country, string zipCode);
     }
 }

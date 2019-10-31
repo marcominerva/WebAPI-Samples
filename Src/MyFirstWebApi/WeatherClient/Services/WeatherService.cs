@@ -29,12 +29,12 @@ namespace WeatherClient.Services
 
         public Task<CurrentWeather> GetCurrentWeatherAsync(string country, string zipCode)
         {
-            return weatherServiceApi.GetCurrentWeather(country, zipCode);
+            return weatherServiceApi.GetCurrentWeatherAsync(country, zipCode);
         }
 
         public Task<ForecastWeather> GetForecastWeatherAsync(string country, string zipCode)
         {
-            return weatherServiceApi.GetForecastWeather(country, zipCode);
+            return weatherServiceApi.GetForecastWeatherAsync(country, zipCode);
         }
     }
 }
