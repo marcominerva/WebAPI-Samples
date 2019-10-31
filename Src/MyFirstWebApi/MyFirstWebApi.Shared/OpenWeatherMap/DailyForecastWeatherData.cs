@@ -1,8 +1,9 @@
-﻿using System;
+﻿using MyFirstWebApi.Shared.Converters;
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace MyFirstWebApi.Models.OpenWeatherMap
+namespace MyFirstWebApi.Shared.OpenWeatherMap
 {
     public class DailyForecastWeatherData
     {

@@ -1,7 +1,7 @@
-﻿using MyFirstWebApi.Models.OpenWeatherMap;
+﻿using MyFirstWebApi.Shared.OpenWeatherMap;
 using System.Threading.Tasks;
 
-namespace MyFirstWebApi.Services
+namespace WeatherClient.Services
 {
     public interface IWeatherService
     {

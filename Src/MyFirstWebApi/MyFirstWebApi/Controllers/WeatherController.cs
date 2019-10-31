@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using MyFirstWebApi.Models.OpenWeatherMap;
 using MyFirstWebApi.Services;
+using MyFirstWebApi.Shared.OpenWeatherMap;
 using System.Net.Mime;
 using System.Threading.Tasks;
 

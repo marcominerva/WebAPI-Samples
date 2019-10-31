@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using MyFirstWebApi.Models;
-using MyFirstWebApi.Models.OpenWeatherMap;
+using MyFirstWebApi.Shared.OpenWeatherMap;
 using System;
 using System.Net.Http;
 using System.Text.Json;

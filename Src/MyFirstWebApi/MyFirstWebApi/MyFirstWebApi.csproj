@@ -8,4 +8,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyFirstWebApi.Shared\MyFirstWebApi.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

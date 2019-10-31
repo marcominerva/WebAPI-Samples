@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Buffers;
 using System.Buffers.Text;
+using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace MyFirstWebApi.Models
+namespace MyFirstWebApi.Shared.Converters
 {
     public class UnixToDateTimeConverter : JsonConverter<DateTime>
     {
@@ -19,6 +20,14 @@ namespace MyFirstWebApi.Models
                     if (Utf8Parser.TryParse(span, out long number, out var bytesConsumed) && span.Length == bytesConsumed)
                     {
                         var date = UnixTimeStampToDateTime(number);
+                        return date;
+                    }
+                }
+                else if (reader.TokenType == JsonTokenType.String)
+                {
+                    var value = reader.GetString();
+                    if (DateTime.TryParseExact(value, "O", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var date))
+                    {
                         return date;
                     }
                 }
