@@ -19,6 +19,7 @@ namespace WeatherClient.Services
             {
                 ContentSerializer = new JsonContentSerializer(new JsonSerializerOptions
                 {
+                    PropertyNameCaseInsensitive = true,
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                     WriteIndented = true,
                 })
