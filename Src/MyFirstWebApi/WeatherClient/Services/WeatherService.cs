@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using MyFirstWebApi.Shared.OpenWeatherMap;
 using Refit;
-using System.Text.Json;
 using System.Threading.Tasks;
 using WeatherClient.Models;
 
@@ -17,12 +16,7 @@ namespace WeatherClient.Services
             // See the JsonContentSerializer.cs class for implementation details.
             var settings = new RefitSettings
             {
-                ContentSerializer = new JsonContentSerializer(new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true,
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                    WriteIndented = true,
-                })
+                ContentSerializer = new JsonContentSerializer()
             };
 
             weatherServiceApi = RestService.For<IWeatherServiceApi>(appSettings.Value.ServiceUrl, settings);

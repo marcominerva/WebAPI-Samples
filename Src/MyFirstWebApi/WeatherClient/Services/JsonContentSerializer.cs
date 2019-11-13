@@ -1,7 +1,5 @@
 ﻿using Refit;
-using System.IO;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -10,14 +8,16 @@ namespace WeatherClient.Services
 {
     public class JsonContentSerializer : IContentSerializer
     {
-        private static readonly MediaTypeHeaderValue jsonMediaType =
-            new MediaTypeHeaderValue("application/json") { CharSet = Encoding.UTF8.WebName };
-
         private readonly JsonSerializerOptions serializerOptions;
 
-        public JsonContentSerializer(JsonSerializerOptions serializerOptions)
+        public JsonContentSerializer(JsonSerializerOptions serializerOptions = null)
         {
-            this.serializerOptions = serializerOptions;
+            this.serializerOptions = serializerOptions ?? new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                WriteIndented = true,
+            };
         }
 
         public async Task<T> DeserializeAsync<T>(HttpContent content)
@@ -26,17 +26,12 @@ namespace WeatherClient.Services
             return await JsonSerializer.DeserializeAsync<T>(utf8Json, serializerOptions).ConfigureAwait(false);
         }
 
-        public async Task<HttpContent> SerializeAsync<T>(T item)
+        public Task<HttpContent> SerializeAsync<T>(T item)
         {
-            using var stream = new MemoryStream();
+            var json = JsonSerializer.Serialize(item, serializerOptions);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            await JsonSerializer.SerializeAsync(stream, item, serializerOptions).ConfigureAwait(false);
-            await stream.FlushAsync().ConfigureAwait(false);
-
-            var content = new StreamContent(stream);
-            content.Headers.ContentType = jsonMediaType;
-
-            return content;
+            return Task.FromResult((HttpContent)content);
         }
     }
 }
