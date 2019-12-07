@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Refit;
 using System;
 using System.Windows;
 using WeatherClient.Models;
@@ -16,11 +18,23 @@ namespace WeatherClient
             host = Host.CreateDefaultBuilder()
                     .ConfigureServices((context, services) =>
                     {
-                        services.Configure<AppSettings>(context.Configuration.GetSection(nameof(AppSettings)));
-                        services.AddSingleton<IWeatherService, WeatherService>();
-                        services.AddSingleton<MainWindow>();
+                        ConfigureServices(context.Configuration, services);
                     })
                     .Build();
+        }
+
+        private void ConfigureServices(IConfiguration configuration, IServiceCollection services)
+        {
+            var appSettings = configuration.GetSection(nameof(AppSettings)).Get<AppSettings>();
+
+            // Create a RestClient using Refit and the System.Text.Json serializer.
+            services.AddRefitClient<IWeatherServiceApi>(new RefitSettings
+            {
+                ContentSerializer = new Services.JsonContentSerializer()
+            }).ConfigureHttpClient(c => c.BaseAddress = new Uri(appSettings.ServiceUrl));
+
+            services.AddSingleton<IWeatherService, WeatherService>();
+            services.AddSingleton<MainWindow>();
         }
 
         protected override async void OnStartup(StartupEventArgs e)

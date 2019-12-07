@@ -1,8 +1,5 @@
-﻿using Microsoft.Extensions.Options;
-using MyFirstWebApi.Shared.OpenWeatherMap;
-using Refit;
+﻿using MyFirstWebApi.Shared.OpenWeatherMap;
 using System.Threading.Tasks;
-using WeatherClient.Models;
 
 namespace WeatherClient.Services
 {
@@ -10,16 +7,9 @@ namespace WeatherClient.Services
     {
         private readonly IWeatherServiceApi weatherServiceApi;
 
-        public WeatherService(IOptions<AppSettings> appSettings)
+        public WeatherService(IWeatherServiceApi weatherServiceApi)
         {
-            // Create a RestClient using Refit and the System.Text.Json serializer.
-            // See the JsonContentSerializer.cs class for implementation details.
-            var settings = new RefitSettings
-            {
-                ContentSerializer = new JsonContentSerializer()
-            };
-
-            weatherServiceApi = RestService.For<IWeatherServiceApi>(appSettings.Value.ServiceUrl, settings);
+            this.weatherServiceApi = weatherServiceApi;
         }
 
         public Task<CurrentWeather> GetCurrentWeatherAsync(string country, string zipCode)
