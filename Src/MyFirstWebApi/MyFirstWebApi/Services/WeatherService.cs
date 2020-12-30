@@ -4,7 +4,7 @@ using MyFirstWebApi.Models;
 using MyFirstWebApi.Shared.OpenWeatherMap;
 using System;
 using System.Net.Http;
-using System.Text.Json;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace MyFirstWebApi.Services
@@ -62,9 +62,7 @@ namespace MyFirstWebApi.Services
                 return default;
             }
 
-            var jsonResponse = await response.Content.ReadAsStringAsync();
-            var content = JsonSerializer.Deserialize<T>(jsonResponse);
-
+            var content = await response.Content.ReadFromJsonAsync<T>();
             return content;
         }
     }
