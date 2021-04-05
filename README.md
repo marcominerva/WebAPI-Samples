@@ -16,6 +16,13 @@ In order to execute this sample, you need to register a free account on [OpenWea
 
 This sample comes with a WPF client made with .NET 5.0, showing how to use [Refit](https://github.com/reactiveui/refit) to make API calls.
 
+**[Calendar API](src/CalendarApi/)**
+
+A sample ASP.NET Core Web API that shows how to develop web applications that are ready to be executed on-premise or on Azure without any further change to adapt them to the specific platform. It features:
+
+- Use of UTC date format with System.Text.Json
+- Use of an abstraction layer to handle local file system or Azure Storage to save and retrieve files
+
 **[Raspberry Control](src/RaspberryControl/)**
 
 A sample that shows how to control PINs on a Raspberry Pi Board running ASP.NET Core on Linux. It features:
