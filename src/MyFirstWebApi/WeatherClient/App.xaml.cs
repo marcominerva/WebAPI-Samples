@@ -1,10 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System;
+using System.Windows;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Refit;
-using System;
-using System.Text.Json;
-using System.Windows;
 using WeatherClient.Models;
 using WeatherClient.Services;
 
@@ -17,22 +16,20 @@ namespace WeatherClient
         public App()
         {
             host = Host.CreateDefaultBuilder()
-                    .ConfigureServices((context, services) =>
-                    {
-                        ConfigureServices(context.Configuration, services);
-                    })
+                    .ConfigureServices(ConfigureServices)
                     .Build();
         }
 
-        private static void ConfigureServices(IConfiguration configuration, IServiceCollection services)
+        private static void ConfigureServices(HostBuilderContext hostingContext, IServiceCollection services)
         {
-            var appSettings = configuration.GetSection(nameof(AppSettings)).Get<AppSettings>();
+            var appSettings = hostingContext.Configuration.GetSection(nameof(AppSettings)).Get<AppSettings>();
 
             // Create a RestClient using Refit and the System.Text.Json serializer.
-            services.AddRefitClient<IWeatherServiceApi>(new RefitSettings
-            {
-                ContentSerializer = new SystemTextJsonContentSerializer(new JsonSerializerOptions(JsonSerializerDefaults.Web))
-            }).ConfigureHttpClient(c => c.BaseAddress = new Uri(appSettings.ServiceUrl));
+            services.AddRefitClient<IWeatherServiceApi>()
+                .ConfigureHttpClient(c =>
+                {
+                    c.BaseAddress = new Uri(appSettings.ServiceUrl);
+                });
 
             services.AddSingleton<IWeatherService, WeatherService>();
             services.AddSingleton<MainWindow>();
