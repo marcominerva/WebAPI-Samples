@@ -330,3 +330,5 @@ ASALocalRun/
 .mfractor/
 
 /Src/MyFirstWebApi/MyFirstWebApi/appsettings.local.json
+/src/CalendarApi/Properties/ServiceDependencies/azurecalendarapi - Web Deploy/profile.arm.json
+/src/CalendarApi/CalendarApi/appsettings.local.json
