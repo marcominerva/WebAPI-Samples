@@ -1,6 +1,6 @@
 # WebAPI Samples
 
-A collection of Web APIs made with ASP.NET Core and related clients to show their usage.
+A collection of Web APIs made with ASP.NET Core 5.0 and related clients to show their usage.
 
 **[My First Web API](Src/MyFirstWebApi/)**
 
