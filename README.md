@@ -2,7 +2,7 @@
 
 A collection of Web APIs made with ASP.NET Core 5.0 and related clients to show their usage.
 
-**[My First Web API](Src/MyFirstWebApi/)**
+**[My First Web API](src/MyFirstWebApi/)**
 
 A sample ASP.NET Core Web API that uses [OpenWeatherMap](https://openweathermap.org) to retrieve current and forecast wheather. It features:
 
@@ -12,11 +12,11 @@ A sample ASP.NET Core Web API that uses [OpenWeatherMap](https://openweathermap.
 - Caching
 - Json serialization and deserialization with System.Text.Json 
 
-In order to execute this sample, you need to register a free account on [OpenWeatherMap](https://openweathermap.org), generate an API Key and then set it in the [appsettings.json file](Src/MyFirstWebApi/appsettings.json#L3).
+In order to execute this sample, you need to register a free account on [OpenWeatherMap](https://openweathermap.org), generate an API Key and then set it in the [appsettings.json file](src/MyFirstWebApi/appsettings.json#L3).
 
-This sample comes with a WPF client made with .NET Core 3.0, showing how to use [Refit](https://github.com/reactiveui/refit) to make API calls and how to [configure it](Src/MyFirstWebApi/WeatherClient/Services/WeatherService.cs#L18) to use System.Text.Json instead of the default JSON.NET.
+This sample comes with a WPF client made with .NET Core 3.0, showing how to use [Refit](https://github.com/reactiveui/refit) to make API calls and how to [configure it](src/MyFirstWebApi/WeatherClient/Services/WeatherService.cs#L18) to use System.Text.Json instead of the default JSON.NET.
 
-**[Raspberry Control](Src/RaspberryControl/)**
+**[Raspberry Control](src/RaspberryControl/)**
 
 A sample that shows how to control PINs on a Raspberry Pi Board running ASP.NET Core on Linux. It features:
 
