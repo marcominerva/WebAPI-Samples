@@ -14,7 +14,7 @@ A sample ASP.NET Core Web API that uses [OpenWeatherMap](https://openweathermap.
 
 In order to execute this sample, you need to register a free account on [OpenWeatherMap](https://openweathermap.org), generate an API Key and then set it in the [appsettings.json file](src/MyFirstWebApi/appsettings.json#L3).
 
-This sample comes with a WPF client made with .NET Core 3.0, showing how to use [Refit](https://github.com/reactiveui/refit) to make API calls and how to [configure it](src/MyFirstWebApi/WeatherClient/Services/WeatherService.cs#L18) to use System.Text.Json instead of the default JSON.NET.
+This sample comes with a WPF client made with .NET 5.0, showing how to use [Refit](https://github.com/reactiveui/refit) to make API calls.
 
 **[Raspberry Control](src/RaspberryControl/)**
 
