@@ -30,19 +30,19 @@ namespace CalendarApi.BusinessLayer.Services
             return events;
         }
 
-        public async Task SaveASync(Event @event)
+        public async Task SaveASync(EventRequest eventRequest)
         {
-            var dbEvent = @event.Id != Guid.Empty ? await dbContext.FindAsync<Entities.Event>(@event.Id) : null;
+            var dbEvent = eventRequest.Id != Guid.Empty ? await dbContext.FindAsync<Entities.Event>(eventRequest.Id) : null;
 
             if (dbEvent == null)
             {
-                dbEvent = mapper.Map<Entities.Event>(@event);
+                dbEvent = mapper.Map<Entities.Event>(eventRequest);
                 dbEvent.CreatedDate = DateTime.Now;
                 dbContext.Events.Add(dbEvent);
             }
             else
             {
-                mapper.Map(@event, dbEvent);
+                mapper.Map(eventRequest, dbEvent);
             }
 
             await dbContext.SaveChangesAsync();

@@ -8,7 +8,8 @@ namespace CalendarApi.BusinessLayer.Mappers
     {
         public EventMapperProfile()
         {
-            CreateMap<Entities.Event, Event>().ReverseMap();
+            CreateMap<Entities.Event, Event>();
+            CreateMap<EventRequest, Entities.Event>();
         }
     }
 }

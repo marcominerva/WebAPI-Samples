@@ -33,7 +33,7 @@ namespace CalendarApi.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> Save(Event @event)
+        public async Task<IActionResult> Save(EventRequest @event)
         {
             await eventService.SaveASync(@event);
             return NoContent();

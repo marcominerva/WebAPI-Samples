@@ -2,7 +2,7 @@
 
 namespace CalendarApi.Shared.Models
 {
-    public class Event
+    public class EventRequest
     {
         public Guid Id { get; set; }
 
@@ -11,7 +11,5 @@ namespace CalendarApi.Shared.Models
         public string Description { get; set; }
 
         public DateTime Date { get; set; }
-
-        public DateTime CreatedDate { get; set; }
     }
 }

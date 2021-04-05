@@ -29,7 +29,7 @@ namespace CalendarApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers()
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<EventValidator>());
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<EventRequestValidator>());
 
             services.AddAutoMapper(typeof(EventMapperProfile).Assembly);
 
@@ -45,7 +45,7 @@ namespace CalendarApi
                 options.MapType<DateTime>(() => new OpenApiSchema
                 {
                     Type = "string",
-                    Example = new OpenApiString(DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss"))
+                    Example = new OpenApiString(DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fffzzz"))
                 });
             });
 
