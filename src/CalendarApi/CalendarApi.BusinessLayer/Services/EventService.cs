@@ -37,7 +37,7 @@ namespace CalendarApi.BusinessLayer.Services
             if (dbEvent == null)
             {
                 dbEvent = mapper.Map<Entities.Event>(eventRequest);
-                dbEvent.CreatedDate = DateTime.Now;
+                dbEvent.CreatedDate = DateTime.UtcNow;
                 dbContext.Events.Add(dbEvent);
             }
             else

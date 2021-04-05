@@ -3,6 +3,7 @@ using CalendarApi.BusinessLayer.Mappers;
 using CalendarApi.BusinessLayer.Services;
 using CalendarApi.BusinessLayer.Validations;
 using CalendarApi.DataAccessLayer;
+using CalendarApi.Serialization;
 using FluentValidation.AspNetCore;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
@@ -29,6 +30,10 @@ namespace CalendarApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(new UtcDateTimeConverter());
+                })
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<EventRequestValidator>());
 
             services.AddAutoMapper(typeof(EventMapperProfile).Assembly);
