@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalendarApi", "CalendarApi\CalendarApi.csproj", "{301A5B9E-79CC-4973-9532-0B59C8B511BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalendarApi.BusinessLayer", "CalendarApi.BusinessLayer\CalendarApi.BusinessLayer.csproj", "{D1865604-E7DD-41C5-83C1-7592CE63DABC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalendarApi.BusinessLayer", "CalendarApi.BusinessLayer\CalendarApi.BusinessLayer.csproj", "{D1865604-E7DD-41C5-83C1-7592CE63DABC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalendarApi.DataAccessLayer", "CalendarApi.DataAccessLayer\CalendarApi.DataAccessLayer.csproj", "{4D7E44D7-03C8-4A1F-ACAD-84A967114492}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalendarApi.DataAccessLayer", "CalendarApi.DataAccessLayer\CalendarApi.DataAccessLayer.csproj", "{4D7E44D7-03C8-4A1F-ACAD-84A967114492}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalendarApi.Shared", "CalendarApi.Shared\CalendarApi.Shared.csproj", "{F59CE712-A37B-4B04-9CFE-33CA4AAE608D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{4D7E44D7-03C8-4A1F-ACAD-84A967114492}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D7E44D7-03C8-4A1F-ACAD-84A967114492}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D7E44D7-03C8-4A1F-ACAD-84A967114492}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F59CE712-A37B-4B04-9CFE-33CA4AAE608D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F59CE712-A37B-4B04-9CFE-33CA4AAE608D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F59CE712-A37B-4B04-9CFE-33CA4AAE608D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F59CE712-A37B-4B04-9CFE-33CA4AAE608D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

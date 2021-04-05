@@ -2,7 +2,7 @@
 using CalendarApi.DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace CalendarApi.DataAccessLayer.cs
+namespace CalendarApi.DataAccessLayer
 {
     public class CalendarDbContext : DbContext
     {
