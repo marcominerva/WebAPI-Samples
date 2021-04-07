@@ -29,7 +29,11 @@ namespace CalendarApi.BusinessLayer.Providers
         public Task DeleteAsync(string path)
         {
             var fullPath = Path.Combine(settings.StorageFolder, path);
-            File.Delete(fullPath);
+
+            if (File.Exists(fullPath))
+            {
+                File.Delete(fullPath);
+            }
 
             return Task.CompletedTask;
         }
