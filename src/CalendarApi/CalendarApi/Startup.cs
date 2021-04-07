@@ -1,6 +1,7 @@
 using System;
 using CalendarApi.BusinessLayer.Mappers;
 using CalendarApi.BusinessLayer.Services;
+using CalendarApi.BusinessLayer.Settings;
 using CalendarApi.BusinessLayer.Validations;
 using CalendarApi.DataAccessLayer;
 using CalendarApi.Serialization;
@@ -29,6 +30,8 @@ namespace CalendarApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            Configure<AppSettings>(nameof(AppSettings));
+
             services.AddControllers()
                 .AddJsonOptions(options =>
                 {
@@ -63,9 +66,20 @@ namespace CalendarApi
             });
 
             services.AddHostedService<ApplicationStartupTask>();
+
             services.AddScoped<IEventService, EventService>();
+            services.AddScoped<IAttachmentService, AttachmentService>();
 
             services.AddProblemDetails();
+
+            T Configure<T>(string sectionName) where T : class
+            {
+                var section = Configuration.GetSection(sectionName);
+                var settings = section.Get<T>();
+                services.Configure<T>(section);
+
+                return settings;
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -78,7 +92,7 @@ namespace CalendarApi
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "CalendarApi v1");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Calendar API v1");
                 options.RoutePrefix = string.Empty;
             });
 

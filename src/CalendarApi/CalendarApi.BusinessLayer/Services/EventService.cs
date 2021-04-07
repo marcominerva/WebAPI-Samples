@@ -24,7 +24,8 @@ namespace CalendarApi.BusinessLayer.Services
 
         public async Task<IEnumerable<Event>> GetAsync()
         {
-            var events = await dbContext.Events.OrderBy(e => e.Date)
+            var events = await dbContext.Events.AsNoTracking()
+                .OrderBy(e => e.Date)
                 .ProjectTo<Event>(mapper.ConfigurationProvider).ToListAsync();
 
             return events;
