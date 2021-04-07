@@ -79,7 +79,11 @@ namespace CalendarApi.BusinessLayer.Services
                 await dbContext.SaveChangesAsync();
 
                 var fullPath = Path.Combine(appSettings.StorageFolder, attachment.Path);
-                File.Delete(fullPath);
+
+                if (File.Exists(fullPath))
+                {
+                    File.Delete(fullPath);
+                }
             }
         }
 
