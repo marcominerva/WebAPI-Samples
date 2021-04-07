@@ -1,5 +1,6 @@
 using System;
 using CalendarApi.BusinessLayer.Mappers;
+using CalendarApi.BusinessLayer.Providers;
 using CalendarApi.BusinessLayer.Services;
 using CalendarApi.BusinessLayer.Settings;
 using CalendarApi.BusinessLayer.Validations;
@@ -30,7 +31,7 @@ namespace CalendarApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            Configure<AppSettings>(nameof(AppSettings));
+            var appSettings = Configure<AppSettings>(nameof(AppSettings));
 
             services.AddControllers()
                 .AddJsonOptions(options =>
@@ -69,6 +70,11 @@ namespace CalendarApi
 
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<IAttachmentService, AttachmentService>();
+
+            services.AddFileSystemStorage(options =>
+            {
+                options.StorageFolder = appSettings.StorageFolder;
+            });
 
             services.AddProblemDetails();
 
