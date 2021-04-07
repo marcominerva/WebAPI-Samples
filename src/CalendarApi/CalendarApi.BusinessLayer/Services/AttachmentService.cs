@@ -83,7 +83,7 @@ namespace CalendarApi.BusinessLayer.Services
             }
         }
 
-        private string GetPath(Entities.Event @event, IFormFile file)
+        private static string GetPath(Entities.Event @event, IFormFile file)
             => Path.Combine(@event.Date.Year.ToString(), @event.Id.ToString(), file.FileName);
     }
 }
