@@ -71,9 +71,15 @@ namespace CalendarApi
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<IAttachmentService, AttachmentService>();
 
-            services.AddFileSystemStorage(options =>
+            //services.AddFileSystemStorage(options =>
+            //{
+            //    options.StorageFolder = appSettings.StorageFolder;
+            //});
+
+            services.AddAzureStorage(options =>
             {
-                options.StorageFolder = appSettings.StorageFolder;
+                options.ConnectionString = Configuration.GetConnectionString("AzureStorageConnectionString");
+                options.ContainerName = "attachments";
             });
 
             services.AddProblemDetails();
