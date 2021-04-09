@@ -76,7 +76,7 @@ namespace CalendarApi
                 services.AddAzureStorage(options =>
                 {
                     options.ConnectionString = Configuration.GetConnectionString("AzureStorageConnectionString");
-                    options.ContainerName = "attachments";
+                    options.ContainerName = appSettings.ContainerName;
                 });
             }
             else
