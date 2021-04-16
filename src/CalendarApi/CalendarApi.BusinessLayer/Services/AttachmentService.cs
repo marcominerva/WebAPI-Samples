@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using CalendarApi.BusinessLayer.Extensions;
-using CalendarApi.BusinessLayer.Settings;
+using CalendarApi.BusinessLayer.Providers;
 using CalendarApi.DataAccessLayer;
 using CalendarApi.Shared.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using MimeMapping;
 using Entities = CalendarApi.DataAccessLayer.Entities;
 
@@ -21,13 +20,13 @@ namespace CalendarApi.BusinessLayer.Services
     {
         private readonly CalendarDbContext dbContext;
         private readonly IMapper mapper;
-        private readonly AppSettings appSettings;
+        private readonly IStorageProvider storageProvider;
 
-        public AttachmentService(CalendarDbContext dbContext, IMapper mapper, IOptions<AppSettings> appSettingsOptions)
+        public AttachmentService(CalendarDbContext dbContext, IMapper mapper, IStorageProvider storageProvider)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
-            appSettings = appSettingsOptions.Value;
+            this.storageProvider = storageProvider;
         }
 
         public async Task<IEnumerable<Attachment>> GetListAsync(Guid eventId)
@@ -46,10 +45,8 @@ namespace CalendarApi.BusinessLayer.Services
             {
                 var content = await attachment.GetContentAsByteArrayAsync();
                 var path = GetPath(@event, attachment);
-                var fullPath = Path.Combine(appSettings.StorageFolder, path);
 
-                Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
-                await File.WriteAllBytesAsync(fullPath, content);
+                await storageProvider.SaveAsync(path, content);
 
                 @event.Attachments.Add(new Entities.Attachment { Path = path, Length = content.Length });
                 await dbContext.SaveChangesAsync();
@@ -61,9 +58,7 @@ namespace CalendarApi.BusinessLayer.Services
             var attachment = await dbContext.FindAsync<Entities.Attachment>(attachmentId);
             if (attachment != null)
             {
-                var fullPath = Path.Combine(appSettings.StorageFolder, attachment.Path);
-                var content = await File.ReadAllBytesAsync(fullPath);
-
+                var content = await storageProvider.ReadAsync(attachment.Path);
                 return (content, MimeUtility.GetMimeMapping(attachment.Path));
             }
 
@@ -78,12 +73,7 @@ namespace CalendarApi.BusinessLayer.Services
                 dbContext.Attachments.Remove(attachment);
                 await dbContext.SaveChangesAsync();
 
-                var fullPath = Path.Combine(appSettings.StorageFolder, attachment.Path);
-
-                if (File.Exists(fullPath))
-                {
-                    File.Delete(fullPath);
-                }
+                await storageProvider.DeleteAsync(attachment.Path);
             }
         }
 
