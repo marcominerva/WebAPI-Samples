@@ -6,7 +6,7 @@ namespace CalendarApi.BusinessLayer.Services
 {
     public interface IEventService
     {
-        Task SaveASync(EventRequest request);
+        Task SaveAsync(EventRequest request);
 
         Task<IEnumerable<Event>> GetAsync();
     }

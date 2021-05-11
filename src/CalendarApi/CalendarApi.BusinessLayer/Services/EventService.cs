@@ -31,7 +31,7 @@ namespace CalendarApi.BusinessLayer.Services
             return events;
         }
 
-        public async Task SaveASync(EventRequest eventRequest)
+        public async Task SaveAsync(EventRequest eventRequest)
         {
             var dbEvent = eventRequest.Id != Guid.Empty ? await dbContext.FindAsync<Entities.Event>(eventRequest.Id) : null;
 
