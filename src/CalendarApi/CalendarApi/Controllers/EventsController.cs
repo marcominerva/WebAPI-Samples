@@ -35,7 +35,7 @@ namespace CalendarApi.Controllers
         [ProducesDefaultResponseType]
         public async Task<IActionResult> Save(EventRequest @event)
         {
-            await eventService.SaveASync(@event);
+            await eventService.SaveAsync(@event);
             return NoContent();
         }
     }
