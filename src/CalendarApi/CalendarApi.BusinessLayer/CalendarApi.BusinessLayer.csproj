@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="Azure.Storage.Blobs" Version="12.9.1" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.13.0" />
     <PackageReference Include="FluentValidation" Version="10.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.8" />
     <PackageReference Include="MimeMapping" Version="1.0.1.37" />
